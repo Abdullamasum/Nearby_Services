@@ -6,12 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ServiceActivity">
-    <Button
-        android:id="@+id/buttonAddService"
-        android:layout_width="wrap_content"
-        android:onClick="btAdd"
-        android:layout_height="wrap_content"
-        android:text="Add Service" />
     <ListView
         android:id="@+id/listViewServices"
         android:layout_width="match_parent"

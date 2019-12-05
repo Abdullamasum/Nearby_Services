@@ -15,6 +15,7 @@ import android.widget.ListView;
 import java.util.List;
 
 public class ServiceActivity extends AppCompatActivity {
+    public  final String type ="gas";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +60,16 @@ public class ServiceActivity extends AppCompatActivity {
 
         return null;
     }
-    public void btAdd(View v) {
-        Intent intent = new Intent(this, AddServiceActivity.class);
-        startActivity(intent);
+
+   protected  void onResume()
+    {
+        super.onResume();
+        final String currentService = getIntent().getExtras().getString(MainActivity.SERVICE);
+        ListView serviceList = findViewById(R.id.listViewServices);
+        serviceList.setAdapter(new ArrayAdapter<Service>(
+                this,  //context (activity instance)
+                android.R.layout.simple_expandable_list_item_1,
+                getList(currentService, this))
+        );
     }
 }

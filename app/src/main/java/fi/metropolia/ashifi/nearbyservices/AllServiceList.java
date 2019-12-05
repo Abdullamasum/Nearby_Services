@@ -1,6 +1,8 @@
 package fi.metropolia.ashifi.nearbyservices;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -13,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 class AllServiceList {
-    private static final String gasfilename = "gas.json";
-    private static Gson gson = new Gson();
 
     private static final AllServiceList ourInstance = new AllServiceList();
     private List<Service> gasStation;
@@ -22,41 +22,74 @@ class AllServiceList {
     private List<Service> publicTransports;
     private List<Service> healthcares;
     private List<Service> superMarkets;
+    private SharedPreferences myPrefs;
+
+    Gson gson = new Gson();
+
+    public String toJsonGas() {
+
+//String json = gson.toJson();
+        String jsonGas = gson.toJson(gasStation);
+        return  jsonGas;
+    }
+    public  String toJsonRestaurant(){
+         String jsonRest = gson.toJson(restaurants);
+         return jsonRest;
+    }
+    public  String toJsonSupermarket(){
+        String jsonSup = gson.toJson(superMarkets);
+        return jsonSup;
+    }
+    public  String toJsonTransport(){
+        String jsonTra = gson.toJson(publicTransports);
+        return jsonTra;
+    }
+    public  String toJsonHealthcare(){
+        String jsonHealth= gson.toJson(healthcares);
+        return jsonHealth;
+    }
+
+
 
 
     static AllServiceList getInstance() {
         return ourInstance;
     }
 
-    public void addService(String type, Service service, Context c) {
-        if (type.equals(c.getString(R.string.gas))) {
+    public void addService(String type, Service service) {
+        if (type.equals("gas")) {
             gasStation.add(service);
 
-            try {
-                gson.toJson(gasStation, new FileWriter(gasfilename));
-                //FileOutputStream fos = c.openFileOutput(filename, Context.MODE_PRIVATE);
-                //fos.write(gson.toJson(gasStation));
-            } catch (Exception e) {
-                Log.d(MainActivity.TAG, "failed to write to disk " + e);
-            }
+       }
+       else if (type.equals("restaurants")) {
+            restaurants.add(service);
+
+        }
+       else if (type.equals("transport")) {
+            publicTransports.add(service);
+
+        }
+       else if (type.equals("healthcare")) {
+            healthcares.add(service);
+
+        }
+       else if (type.equals("supermarkets")) {
+            superMarkets.add(service);
+
         }
     }
 
 
+
     private AllServiceList() {
 
-        File f = new File(gasfilename);
-        //read from json to the gasStation list
-        try {
-            gasStation = gson.fromJson(new FileReader(f), ArrayList.class);
-        } catch (Exception e) {
-            Log.d(MainActivity.TAG, "failed to read from json..." + e);
+
             gasStation = new ArrayList<>();
             gasStation.add(new Service("ABC Karaportti", "Karaniityntie 2, 02160 Espoo", "010 7660770", "24/7"));
             gasStation.add(new Service("Neste Express", "Tornihaukantie 9, 02620 Espoo", "0200 80100", "24/7"));
             gasStation.add(new Service("Neste-K", "Rajamännynahde 1, 02710 Espoo", "09 599626", "24/7"));
             gasStation.add(new Service("St1 Espoo Automat Karamalmi", "Karapellontie 11, 02610 Espoo", "0800 131031", "24/7"));
-        }
+
 
 
         healthcares = new ArrayList<Service>();
