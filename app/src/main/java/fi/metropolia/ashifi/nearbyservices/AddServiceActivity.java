@@ -55,7 +55,7 @@ public class AddServiceActivity extends AppCompatActivity {
         String openingHours = tvOpeningHours.getText().toString();
         TextView tvPhone = findViewById(R.id.addPhone);
         String phone = tvPhone.getText().toString();
-        Service service = new Service(name, address, openingHours, phone);
+        Service service = new Service(name, address, phone, openingHours);
         AllServiceList.getInstance().addService(type, service);
         Log.d(MainActivity.TAG, "btAddService:"+type);
        // AllServiceList.getInstance().toSharedPref();
