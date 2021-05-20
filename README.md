@@ -2,4 +2,4 @@
 
 #Nearby services near Nokia Campus
 
-#Android project from school 
+#Android project for school course
