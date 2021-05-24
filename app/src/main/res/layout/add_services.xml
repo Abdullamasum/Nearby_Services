@@ -8,32 +8,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="Name"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/addAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Address" />
+        android:hint="Address"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/addPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Phone" />
+        android:hint="Phone"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/addOpeningHours"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Opening Hours" />
+        android:hint="Opening Hours"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/btAddService"
